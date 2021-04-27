@@ -1,0 +1,20 @@
+        <div class="col-10 offset-col-1 mt-3">
+            <div class="card border-primary shadow shadow-lg border border-rounded mb-3">
+
+                <div class="card-body">
+                    <h4 class="card-title">{{story.title}}</h4>
+                    <p class="card-text text-justified">{{ stripTags story.body }}</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <img src="/images/image1.jpg" style="    border-radius: 50%;" width="70" height="70" alt="" class="pl-3 img img-circle">
+                    
+                        <a class="font-weight-bold text-decoration-none pl-5 "  title="View User stories" href="/stories/user/{{story.user._id}}">{{story.user.displayName}}</a>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="font-weight-bold">Date  {{formatDate story.createdAt 'MMMM Do YYYY, h:ss a'}}</p>
+                </div>
+            </div>
+        </div>
