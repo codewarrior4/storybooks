@@ -24,7 +24,9 @@ const app = express();
 
 // Use body parser to
 app.use(express.urlencoded({extended:false}))
-app.use(express.json())
+// app.use(express.json())
+
+
 app.use(methodOverride((req, res) => {
   if(req.body && typeof req.body ==='object' && '_method' in req.body){
     let method = req.body._method

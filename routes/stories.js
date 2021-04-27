@@ -5,6 +5,12 @@ const Story = require('../models/story')
 
 // description = /show add pagec
 // route  = GET
+router.get('/add',ensureAuth,(req,res) => {
+    
+    res.render("stories/add")
+})
+// description = /show single story
+// route  = GET
 router.get('/:id',ensureAuth, async(req,res) => {
     try {
         let story = await Story.findById(req.params.id)
@@ -25,7 +31,7 @@ router.get('/:id',ensureAuth, async(req,res) => {
     }
 })
 
-// description = /show add pagec
+// description = /show user stories
 // route  = GET
 router.get('/user/:userId',ensureAuth, async(req,res) => {
     try {
@@ -38,7 +44,7 @@ router.get('/user/:userId',ensureAuth, async(req,res) => {
         {
             return res.render('error/404')
         }
-            
+            console.log(stories)
              res.render('stories/index',{stories})
         
     } catch (error) {
@@ -48,11 +54,8 @@ router.get('/user/:userId',ensureAuth, async(req,res) => {
 })
 
 
-// description = /show add pagec
-// route  = GET
-router.get('/add',ensureAuth,(req,res) => {
-    res.render("stories/add")
-})
+
+
 
 router.post('/',ensureAuth,async(req,res) => {
     try {
@@ -83,6 +86,7 @@ router.get('/',ensureAuth,async(req,res)=>{
                         .populate('user')
                         .sort({createdAt:'desc'})
                         .lean()
+                        // console.log(stories)
             res.render('stories',{stories})
     } catch (error) {
         console.error(error)
